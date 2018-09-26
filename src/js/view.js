@@ -1,7 +1,7 @@
 
 
 module.exports = {
-  showState(state) {
+  showAppState(state) {
     const layout = document.querySelector('.layout');
     const app = document.querySelector('.main-wrapper__container');
     const mapWrapper = document.getElementById('mapWrapper');
@@ -40,55 +40,19 @@ module.exports = {
     results.innerHTML = renderFriends;
   },
 
-  changeItemIcon(event, zone = '', elem = '') {
-    const element = event.target;
-
-    if (element.className == 'user-plus') {
-      element.className = 'user-minus'
-      return this.changePlaceItem(element)
-    }
-
-    if (element.className == 'user-minus') {
-      element.className = 'user-plus'
-      return this.changePlaceItem(element)
-    }
-//для драг-н-дропа
-    if (zone && elem) {
-      if (zone == 'list-friends__list-item') {
-        return elem.lastElementChild.className = 'user-plus'
-      }
-      elem.lastElementChild.className = 'user-minus'
-    }
-  },
-
   showElem(element, prop) {
     if (prop == 'show') { element.style.display = 'flex' }
     if (prop == 'hide') { element.style.display = 'none' }
   },
 
-  changePlaceItem(element) {
-    
-    if (element.className == 'user-minus') {
-      return document.querySelector('.list-friends__list-item').appendChild(element.parentNode)
-    }
 
-    if (element.className == 'user-plus') {
-      const yourFriends = document.querySelector('.your-friends__list-item');
 
-      if (yourFriends.childNodes) {
-        return yourFriends.insertBefore(element.parentNode, yourFriends.firstChild);
-      }
+  // insertChoosenFriends(choosenFriends) {
+  //   console.log('insertChoosenFriends')
 
-      yourFriends.appendChild(parent);
-    }
-  },
-
-  insertChoosenFriends(choosenFriends) {
-    console.log('insertChoosenFriends')
-
-    for (obj of choosenFriends){
-      document.getElementById(obj.id).lastElementChild.classList = 'user-minus';
-      document.querySelector('.list-friends__list-item').appendChild(document.getElementById(obj.id));
-    }
-  }
+  //   for (obj of choosenFriends){
+  //     document.getElementById(obj.id).lastElementChild.classList = 'user-minus';
+  //     document.querySelector('.list-friends__list-item').appendChild(document.getElementById(obj.id));
+  //   }
+  // }
 }
