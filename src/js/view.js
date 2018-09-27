@@ -45,7 +45,9 @@ module.exports = {
     if (prop == 'hide') { element.style.display = 'none' }
   },
 
-
+  insertElement(whatToInsert,whereToInsert){
+    whereToInsert.appendChild(whatToInsert);
+  }
 
   // insertChoosenFriends(choosenFriends) {
   //   console.log('insertChoosenFriends')
