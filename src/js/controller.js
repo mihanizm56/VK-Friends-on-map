@@ -7,6 +7,9 @@ module.exports = {
     Model.login(config.key, 2)
       .then(() => Model.getFriends({ fields: 'name,lastname,photo_100,country,city' }))
       .then((result) => View.insertFriends(result))
+      .then(()=>{
+        Model.insertFromStorage
+      })
 
 
     this.objectListener(document, 'click')
@@ -24,17 +27,16 @@ module.exports = {
       return this.changeState(event.target.dataset.state)
     }
 
+    if (event.target.className == 'footer__button-save') {
+      return this.saveListOfFriends()
+    }
+
     if (event.target.className == 'user-plus' || 'user-minus') {
       console.log('delegateClick user')
       const firstZone = document.querySelector('.your-friends__list-item')
       const secondZone = document.querySelector('.list-friends__list-item')
       return this.changeItemPlace(event.target, event.target.className, [firstZone,secondZone])
       //this.renderList(document.querySelectorAll('.your-friends__list-item .full-name'), document.querySelector('.search-one_input'))
-      
-    }
-
-    if (event.target.className == 'footer__button-save'){
-      return this.saveListOfFriends()
     }
   },
 

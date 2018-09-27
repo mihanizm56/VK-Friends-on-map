@@ -87,7 +87,7 @@ module.exports = {
   cleanLocalStorage(){
     console.log('storage is cleared')
     localStorage.data = ''
-  },
+  },//вспомогательная функция
 
   saveToLocalStorage(object) {
     console.log('saved to storage')
