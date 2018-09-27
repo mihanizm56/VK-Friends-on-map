@@ -94,18 +94,7 @@ module.exports = {
     localStorage.data = JSON.stringify(object);
   },
 
-  // renderList(arr = [], element) {
-  //   for (let i = 0; i < arr.length; i++) {
-  //     if (!this.isMatching(arr[i].textContent, element.value)) {
-  //       View.showElem(arr[i].parentNode.parentNode, 'hide')
-  //     }
-  //     else {
-  //       View.showElem(arr[i].parentNode.parentNode, 'show')
-  //     }
-  //   }
-  // },
-
-  // isMatching(full, chunk) {
-  //   return full.toUpperCase().indexOf(chunk.toUpperCase()) > -1;
-  // }
+  isMatching(full, chunk) {
+    return full.toUpperCase().indexOf(chunk.toUpperCase()) > -1;
+  }
 }

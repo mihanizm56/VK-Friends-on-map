@@ -16,13 +16,8 @@ module.exports = {
         this.insertChoosenFriends(result)
       })
 
-    this.objectListener(document, 'click')
-    this.objectListener(document, 'keyup')
-  },
-
-  objectListener(object, type) {
-    if (type == 'click') object.addEventListener(type, () => this.delegateClick(event))
-    //if (type == 'keyup') object.addEventListener(type, () => this.delegateKeyUp(event))
+    document.addEventListener('click', () => this.delegateClick(event))
+    document.addEventListener('keyup', () => this.delegateKeyUp(event))
   },
 
   delegateClick() {
@@ -38,9 +33,15 @@ module.exports = {
     if (event.target.className == 'user-plus' || 'user-minus') {
       const firstZone = document.querySelector('.your-friends__list-item')
       const secondZone = document.querySelector('.list-friends__list-item')
-      return this.changeItemPlace(event.target, event.target.className, [firstZone,secondZone])
-      //this.renderList(document.querySelectorAll('.your-friends__list-item .full-name'), document.querySelector('.search-one_input'))
+      
+      this.changeItemPlace(event.target, event.target.className, [firstZone, secondZone])
+      this.renderList(document.querySelector('.search-one_input').value, document.querySelectorAll('.your-friends__list-item .full-name'))
+      return
     }
+  },
+
+  delegateKeyUp() {
+    if (event.target.className == 'search-one_input') this.renderList(document.querySelector('.search-one_input').value, document.querySelectorAll('.your-friends__list-item .full-name'))
   },
 
   changeState(state){
@@ -55,21 +56,17 @@ module.exports = {
     const reestablish = [];
 
     for (friend of selectedFriends){
+      const obj = {}
+      obj.name = friend.firstElementChild.lastElementChild.innerText,
+      obj.id = friend.id,
+      obj.place = friend.dataset.place,
+      obj.photo = friend.firstElementChild.firstElementChild.src
       
-      console.log(friend.firstElementChild.lastElementChild.innerText)
-      const obj = {
-        name: friend.firstElementChild.lastElementChild.innerText,
-        id : friend.id,
-        place : friend.dataset.place,
-        photo: friend.firstElementChild.firstElementChild.src
-      }
       reestablish.push(obj)
     }
 
-    console.log(reestablish)
-
     Model.saveToLocalStorage(reestablish)
-    ////Model.renderPlacemarks(Model.insertFromStorage())
+    //Model.renderPlacemarks(Model.insertFromStorage())
   },
   
 
@@ -90,14 +87,22 @@ module.exports = {
     console.log('choosen friends are inserting')
 
     for (obj of choosenFriends){
-      document.getElementById(obj.id).lastElementChild.classList = 'user-minus';
+      document.getElementById(obj.id).lastElementChild.className = 'user-minus';
       View.insertElement(document.getElementById(obj.id), document.querySelector('.list-friends__list-item'))
     }
-  }
+  },
 
-  // delegateKeyUp() {
-  //   if (event.target.className == 'search-one_input') Model.renderList(document.querySelectorAll('.your-friends__list-item .full-name'), document.querySelector('.search-one_input'))
-  // },
+
+  renderList(string, array) {
+    for(element of array){
+      if (!Model.isMatching(element.textContent, string)) {
+        View.showElem(element.parentNode.parentNode, 'hide')
+      }
+      else {
+        View.showElem(element.parentNode.parentNode, 'show')
+      }
+    }
+  },
 
 }
 
