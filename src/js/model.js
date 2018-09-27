@@ -1,6 +1,4 @@
 
-const moduleMap = require('./yaMap')
-
 module.exports = {
   appState: 0,
 
@@ -29,60 +27,11 @@ module.exports = {
     return this.callApi('friends.get',params)
   },
 
-  // changeState(state) {
-  //   this.stateOfApp = state
-  //   View.showState(this.stateOfApp)
-  // },
-
   insertFromStorage() {
     if (localStorage.data) {
       return JSON.parse(localStorage.data)
     }
   },
-
-  // vkInit(key) {
-  //   console.log('app started')
-  //   VK.init({
-  //     apiId: key
-  //   })
-  // },
-  
-  // vkAuth() {
-  //   VK.Auth.login(data => {
-  //     if (!data.session) {
-  //       throw new Error('Не удалось авторизоваться!')
-  //     }
-  //   }, 2)
-  // },
-
-  // vkCallApi(method, params) {
-  //   console.log('vkCallApi')
-  //   params.v = '5.76';
-  //   VK.api(method, params, (data) => {
-  //     if (data.error) {
-  //       throw new Error(data.error)
-  //     }
-
-  //     View.insertFriends(data.response)
-  //     View.insertChoosenFriends(this.insertFromStorage())
-
-  //     this.renderPlacemarks(this.insertFromStorage())
-  //   })
-  // },
-
-  // renderPlacemarks(arrayOfFriends){
-  //   console.log('renderPlacemarks')
-  //   moduleMap.deleteAllPlaceMarks()
-    
-  //   arrayOfFriends.filter(friend => friend.place && friend.name && friend.photo)
-  //     .map(friend => {
-
-  //       const arrayData = [friend.name, friend.place, friend.photo]
-
-  //       return arrayData
-  //     })
-  //     .map(array => moduleMap.insertPlaceMark(array[0], array[1], array[2]))
-  // },
 
   cleanLocalStorage(){
     console.log('storage is cleared')

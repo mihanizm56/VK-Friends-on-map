@@ -30,6 +30,7 @@ module.exports = {
   },
 
   insertPlaceMark(name,place,photo) {
+    
     return ymaps.geocode(place)
       .then(result => {
         const points = result.geoObjects.toArray();

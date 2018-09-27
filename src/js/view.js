@@ -48,13 +48,4 @@ module.exports = {
   insertElement(whatToInsert,whereToInsert){
     whereToInsert.appendChild(whatToInsert);
   }
-
-  // insertChoosenFriends(choosenFriends) {
-  //   console.log('insertChoosenFriends')
-
-  //   for (obj of choosenFriends){
-  //     document.getElementById(obj.id).lastElementChild.classList = 'user-minus';
-  //     document.querySelector('.list-friends__list-item').appendChild(document.getElementById(obj.id));
-  //   }
-  // }
 }

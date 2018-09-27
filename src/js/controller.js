@@ -1,6 +1,7 @@
 const Model = require('./model')
 const View = require('./view')
 const config = require('./config')
+const moduleMap = require('./yaMap')
 
 module.exports = {
   init() {
@@ -15,6 +16,7 @@ module.exports = {
         console.log('insertedFromStorage') 
         this.insertChoosenFriends(result)
       })
+      .then(() => this.renderPlacemarks())
 
     document.addEventListener('click', () => this.delegateClick(event))
     document.addEventListener('keyup', () => this.delegateKeyUp(event))
@@ -66,7 +68,8 @@ module.exports = {
     }
 
     Model.saveToLocalStorage(reestablish)
-    //Model.renderPlacemarks(Model.insertFromStorage())
+
+    this.renderPlacemarks()
   },
   
 
@@ -90,6 +93,23 @@ module.exports = {
       document.getElementById(obj.id).lastElementChild.className = 'user-minus';
       View.insertElement(document.getElementById(obj.id), document.querySelector('.list-friends__list-item'))
     }
+  },
+
+
+  renderPlacemarks(){
+    console.log('placemarks have been rendered')
+
+    const arrayOfFriends = Model.insertFromStorage()
+    
+    moduleMap.deleteAllPlaceMarks()
+
+    arrayOfFriends.filter(friend => friend.place && friend.name && friend.photo)
+      .map(friend => {
+
+        const arrayData = [friend.name, friend.place, friend.photo]
+        return arrayData
+      })
+      .map(array => moduleMap.insertPlaceMark(...array))
   },
 
 
