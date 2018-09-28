@@ -1,17 +1,20 @@
+
+const config = require('./config')
+
 module.exports = {
   init(){
     new Promise(resolve => ymaps.ready(resolve))
       .then(() => {
-        this.createMap()
+        this.createMap(config.mapContainer)
       })
   },
 
-  createMap(){
+  createMap(container){
     let myMap;
     
-    myMap = new ymaps.Map('map', {
+    myMap = new ymaps.Map(container, {
       center: [55.76, 37.64], // Москва
-      controls: ['smallMapDefaultSet'],
+      controls: [],
       zoom: 5
     },
     {
@@ -24,8 +27,8 @@ module.exports = {
       openBalloonOnClick: true,
       geoObjectOpenBalloonOnClick: true
     });
-    myMap.geoObjects.add(clusterer);
 
+    myMap.geoObjects.add(clusterer);
     console.log(`map is initialized`)
   },
 
@@ -40,7 +43,7 @@ module.exports = {
             [coors[0], coors[1]], 
             {
               balloonContentHeader: `${name}`,
-              balloonContentBody: `<h4>город ${place}</h4><img src='${photo}'/>`,
+              balloonContentBody: `<div class='baloon__div'><h4>город ${place}</h4><img src='${photo}'/></div>`,
               clusterCaption: `${name}`
             }, 
             { preset: 'islands#invertedVioletClusterIcons' })

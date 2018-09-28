@@ -16,6 +16,7 @@ module.exports = {
         console.log('insertedFromStorage') 
         this.insertChoosenFriends(result)
       })
+      
       .then(() => this.renderPlacemarks())
 
     document.addEventListener('click', () => this.delegateClick(event))
