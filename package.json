@@ -7,21 +7,20 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mihanizm56/calculator_with_MVC.git"
+    "url": "git+https://github.com/mihanizm56/test_2.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/mihanizm56/calculator_with_MVC/issues"
+    "url": "https://github.com/mihanizm56/test_2.git/issues"
   },
-  "homepage": "https://github.com/mihanizm56/calculator_with_MVC#readme",
+  "homepage": "https://github.com/mihanizm56/test_2.git#readme",
   "description": "",
   "dependencies": {
     "browser-sync": "^2.24.7",
     "browserify": "^16.2.2",
     "gulp": "^3.9.1",
     "gulp-browserify": "^0.5.1",
-    "gulp-clean": "^0.4.0",
     "gulp-clean-css": "^3.10.0",
     "gulp-concat-css": "^3.1.0",
     "gulp-imagemin": "^4.1.0",
@@ -32,7 +31,10 @@
     "livereload-js": "^2.3.0",
     "pngquant": "^1.3.0",
     "rimraf": "^2.6.2",
-    "uglify-js": "^3.4.9",
     "vinyl-source-stream": "^2.0.0"
+  },
+  "devDependencies": {
+    "babel-preset-es2015": "^6.5.0",
+    "gulp-babel": "^6.1.2"
   }
 }

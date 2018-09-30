@@ -4,6 +4,7 @@ const cleanCss = require('gulp-clean-css');
 const rename = require('gulp-rename');
 const rimraf = require('rimraf');
 const browserify = require('browserify')
+const babel = require('gulp-babel');
 const source = require('vinyl-source-stream');
 const browserSync = require("browser-sync");
 const imagemin = require('gulp-imagemin');
@@ -39,7 +40,8 @@ const path = {
     js: 'src/js/*.js',
     css: 'src/css/main.css',
   },
-  clean: './build' //Тут мы укажем путь для очистки
+  clean: './build', //Тут мы укажем путь для очистки
+  transpile: 'build/js/bundle.js'
 };
 
 
@@ -85,6 +87,13 @@ gulp.task('scripts', function () {
   return browserify(path.src.js)
     .bundle()
     .pipe(source('bundle.js'))
+    .pipe(gulp.dest(path.build.js));
+});
+
+
+gulp.task('scripts:transpile', () => {
+  return gulp.src(path.transpile)
+    .pipe(babel({ presets: ['es2015'] }))
     .pipe(gulp.dest(path.build.js));
 });
 
