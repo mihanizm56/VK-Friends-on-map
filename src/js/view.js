@@ -1,7 +1,12 @@
 
+const Animator = require('./animator')
 
 module.exports = {
   showAppState(state) {
+  // const slideWrapper = document.querySelector('.slide_wrapper');
+  // const animator = new Animator(slideWrapper);
+  // animator.set(0)
+
     const layout = document.querySelector('.layout');
     const app = document.querySelector('.main-wrapper__container');
     const mapWrapper = document.getElementById('mapWrapper');

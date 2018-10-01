@@ -33,7 +33,7 @@ module.exports = {
   },
 
   insertPlaceMark(name,place,photo) {
-    
+
     return ymaps.geocode(place)
       .then(result => {
         const points = result.geoObjects.toArray();
@@ -43,7 +43,11 @@ module.exports = {
             [coors[0], coors[1]], 
             {
               balloonContentHeader: `${name}`,
-              balloonContentBody: `<div class='baloon__div'><h4>город ${place}</h4><img src='${photo}'/></div>`,
+              balloonContentBody: `
+                <div class='baloon__div'>
+                  <h4>город ${place}</h4>
+                  <img src='${photo}' class='baloon__img'/>
+                </div>`,
               clusterCaption: `${name}`
             }, 
             { preset: 'islands#invertedVioletClusterIcons' })
