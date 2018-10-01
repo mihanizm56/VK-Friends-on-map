@@ -104,7 +104,8 @@ module.exports = {
 
   insertChoosenFriends(choosenFriends) {
     console.log('choosen friends are inserting')
-
+    if (!choosenFriends) return
+    
     for (obj of choosenFriends){
       document.getElementById(obj.id).lastElementChild.className = 'user-minus';
       View.insertElement(document.getElementById(obj.id), document.querySelector('.list-friends__list-item'))
