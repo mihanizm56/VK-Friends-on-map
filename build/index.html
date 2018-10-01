@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Working with vk.api</title>
+  <link rel="stylesheet" href="css/bundle.min.css">
+  <script src="https://api-maps.yandex.ru/2.1.68/?lang=ru_RU" type="text/javascript"></script>
+</head>
+<body>
+  <div class="main-wrapper">
+    <div class="layout" data-state="0"></div>
+    <header class="container__logo" >
+      <div class="logo_item" data-state="1"></div>
+    </header>
+    <div class="main-wrapper__container">
+      <div class="container__header">
+        <p class="header__title">Выберите друзей</p>
+        <button class="header__button-close" data-state="0"></button>
+      </div>
+      <div class="container__map-wrapper" id="mapWrapper">
+        <button class="map-wrapper__button-open" data-state='2'>Показать друзей на карте</button>
+        <div class="map-wrapper__map-container" id='map'>
+          <button class="map-wrapper__button-close" data-state='1'>Скрыть карту</button>
+        </div>
+      </div>
+      <div class="container__search">
+          <input class="search-one_input" type="text" placeholder="Начните вводить имя друга">
+      </div>
+      <div class="container__main-block">
+        <div class="main-block__your-friends">
+          <p class="your-friends__title">Ваши друзья</p>
+          <ul class="your-friends__list-item">
+            <script id="user-template" type="text/x-handlebars-template">
+                {{#each items}}
+                  <li class="user-container" id="{{id}}" data-place="{{city.title}}">
+                    <div class="user-container__left">
+                      <img class="user-photo" src="{{photo_100}}" />
+                      <p class="full-name">{{first_name}} {{last_name}}</p>
+                    </div>
+                    <div class="user-plus"></div>
+                  </li>
+                {{/each }}
+            </script>
+          </ul>
+        </div>
+        <div class="main-block__list-friends">
+          <p class="list-friends__title">Друзья на карте</p>
+          <ul class="list-friends__list-item">
+
+
+          </ul>
+        </div>
+      </div>
+      <div class="container__footer">
+         <button class="footer__button-save" data-save='true'>Сохранить и показать</button>
+      </div>
+    </div>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
+  <script src="https://vk.com/js/api/openapi.js?159" type="text/javascript"></script>
+  <script src="./js/bundle.js"></script>
+</body>
+</html>
